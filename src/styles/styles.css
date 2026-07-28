@@ -1,0 +1,419 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#16213e,#0f3460,#1b4965);
+    color:#fff;
+    min-height:100vh;
+    padding:40px 20px;
+}
+
+/* ===========================
+   GLOBAL
+=========================== */
+
+main{
+    max-width:1100px;
+    margin:auto;
+}
+
+section{
+    margin-bottom:35px;
+}
+
+.card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 12px 35px rgba(0,0,0,.25);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+header{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:60px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:28px;
+    font-weight:700;
+}
+
+.logo i{
+    color:#FFD54F;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#87CEFA;
+}
+
+/* ===========================
+   SEARCH
+=========================== */
+
+.search-section{
+    text-align:center;
+}
+
+.search-section h1{
+    font-size:50px;
+    margin-bottom:12px;
+}
+
+.search-section p{
+    opacity:.8;
+    margin-bottom:30px;
+}
+
+.search-box{
+    display:flex;
+    justify-content:center;
+    max-width:650px;
+    margin:auto;
+    gap:15px;
+}
+
+.search-box input{
+    flex:1;
+    border:none;
+    outline:none;
+    border-radius:50px;
+    padding:18px 24px;
+    font-size:16px;
+    background:rgba(255,255,255,.12);
+    color:white;
+}
+
+.search-box input::placeholder{
+    color:#ddd;
+}
+
+.search-button {
+    width:60px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    background:#4FC3F7;
+    color:white;
+    font-size:15px;
+    transition:.3s;
+}
+
+.search-box button:hover{
+    transform:scale(1.08);
+}
+
+/* ===========================
+   CURRENT WEATHER
+=========================== */
+
+.current-weather{
+    margin-top:45px;
+}
+
+.weather-main{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.weather-main h2{
+    font-size:34px;
+}
+
+.date{
+    margin-top:8px;
+    opacity:.75;
+}
+
+.description{
+    margin-top:15px;
+    color:#FFD54F;
+    font-size:18px;
+    font-weight:600;
+}
+
+.weather-icon{
+    font-size:90px;
+    color:#FFD54F;
+}
+
+.temperature{
+    margin-top:25px;
+    font-size:90px;
+    font-weight:700;
+}
+
+/* ===========================
+   DETAILS GRID
+=========================== */
+
+.details-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.detail-card{
+    text-align:center;
+}
+
+.detail-card i{
+    font-size:34px;
+    color:#4FC3F7;
+    margin-bottom:18px;
+}
+
+.detail-card h3{
+    margin-bottom:10px;
+    font-size:18px;
+    font-weight:600;
+}
+
+.detail-card p{
+    font-size:18px;
+    opacity:.9;
+}
+
+/* ===========================
+   FORECAST
+=========================== */
+
+.forecast h2{
+    margin-bottom:22px;
+    font-size:28px;
+}
+
+.forecast-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+}
+
+.forecast-card{
+    text-align:center;
+}
+
+.forecast-card h3{
+    margin-bottom:15px;
+}
+
+.forecast-card i{
+    font-size:42px;
+    color:#FFD54F;
+    margin-bottom:18px;
+}
+
+.forecast-card p{
+    font-size:17px;
+}
+
+/* ===========================
+   AIR QUALITY
+=========================== */
+
+.air-quality h2{
+    margin-bottom:25px;
+}
+
+.aqi{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.aqi-number{
+    font-size:54px;
+    font-weight:700;
+}
+
+.aqi-status{
+    background:#2ecc71;
+    padding:8px 18px;
+    border-radius:40px;
+    font-weight:600;
+}
+
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:rgba(255,255,255,.12);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress{
+    width:42%;
+    height:100%;
+    background:linear-gradient(90deg,#2ecc71,#f1c40f);
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+    text-align:center;
+    margin-top:60px;
+    opacity:.75;
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.weather-icon{
+    animation:float 3s ease-in-out infinite;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+    .details-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .forecast-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    header{
+        flex-direction:column;
+        gap:25px;
+        text-align:center;
+    }
+
+    nav{
+        gap:20px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .search-section h1{
+        font-size:38px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        width:100%;
+        height:55px;
+        border-radius:50px;
+    }
+
+    .weather-main{
+        flex-direction:column;
+        text-align:center;
+        gap:20px;
+    }
+
+    .temperature{
+        text-align:center;
+        font-size:72px;
+    }
+
+    .forecast-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:500px){
+
+    body{
+        padding:25px 15px;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .forecast-grid{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:22px;
+    }
+
+    .weather-icon{
+        font-size:72px;
+    }
+
+    .temperature{
+        font-size:60px;
+    }
+
+    .aqi{
+        flex-direction:column;
+        gap:15px;
+    }
+
+}
