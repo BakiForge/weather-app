@@ -1,1 +1,3 @@
-console.log('Hello World');
+import { getWeather } from "./api/weatherApi.js";
+
+getWeather();
