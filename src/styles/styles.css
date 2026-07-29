@@ -148,8 +148,9 @@ nav a:hover{
    CURRENT WEATHER
 =========================== */
 
-.current-weather{
-    margin-top:45px;
+.current-weather {
+    margin-top: 45px;
+    display: none;
 }
 
 .weather-main{
