@@ -174,15 +174,14 @@ nav a:hover{
     font-weight:600;
 }
 
-.weather-icon{
-    font-size:90px;
-    color:#FFD54F;
-}
-
 .temperature{
     margin-top:25px;
     font-size:90px;
     font-weight:700;
+}
+
+.weather-icon {
+  height: 100px;
 }
 
 /* ===========================
@@ -403,9 +402,6 @@ footer{
         padding:22px;
     }
 
-    .weather-icon{
-        font-size:72px;
-    }
 
     .temperature{
         font-size:60px;
