@@ -12,8 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/6f8d2f55d4.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -42,9 +40,9 @@
 
         <div class="search-box">
 
-            <input
-                    type="text"
-                    placeholder="Search city..."
+            <label for="search-box"></label><input id="search-box"
+                                                   type="text"
+                                                   placeholder="Search city..."
             >
 
             <button class="search-button">
@@ -64,7 +62,7 @@
 
             <div>
 
-                <h2>Belgrade</h2>
+                <h2 class="city-name">test</h2>
 
                 <p class="date">
                     Tuesday, July 28
@@ -76,7 +74,7 @@
 
             </div>
 
-            <i class="fa-solid fa-sun weather-icon"></i>
+            <img src="src/assets/sunny.png" class="weather-icon" alt="weather-icon">
 
         </div>
 
@@ -94,31 +92,31 @@
         <div class="detail-card card">
             <i class="fa-solid fa-temperature-half"></i>
             <h3>Feels Like</h3>
-            <p>29°C</p>
+            <p class="feels-like">29°C</p>
         </div>
 
         <div class="detail-card card">
             <i class="fa-solid fa-droplet"></i>
             <h3>Humidity</h3>
-            <p>62%</p>
+            <p class="humidity">62%</p>
         </div>
 
         <div class="detail-card card">
             <i class="fa-solid fa-wind"></i>
             <h3>Wind</h3>
-            <p>12 km/h</p>
+            <p class="wind">12 km/h</p>
         </div>
 
         <div class="detail-card card">
             <i class="fa-solid fa-gauge-high"></i>
             <h3>Pressure</h3>
-            <p>1016 hPa</p>
+            <p class="pressure">1016 hPa</p>
         </div>
 
         <div class="detail-card card">
             <i class="fa-solid fa-eye"></i>
             <h3>Visibility</h3>
-            <p>10 km</p>
+            <p class="visibility">10 km</p>
         </div>
 
         <div class="detail-card card">
@@ -214,5 +212,6 @@
 
 </footer>
 
+<script src="./dist/index.js" type="module"></script>
 </body>
 </html>
