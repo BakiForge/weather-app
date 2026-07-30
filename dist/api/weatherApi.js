@@ -83,5 +83,9 @@ export async function getWeather(city) {
     }
     const weatherMainSection = document.querySelector('.current-weather');
     weatherMainSection.style.display = 'block';
+    const detailsSection = document.querySelector('.details-grid');
+    if (detailsSection) {
+        detailsSection.style.display = 'grid';
+    }
 }
 //# sourceMappingURL=weatherApi.js.map

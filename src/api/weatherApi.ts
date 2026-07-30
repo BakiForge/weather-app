@@ -94,4 +94,9 @@ export async function getWeather (city: string) {
 
     const weatherMainSection = document.querySelector('.current-weather') as HTMLDivElement;
     weatherMainSection.style.display = 'block';
+
+    const detailsSection = document.querySelector('.details-grid');
+    if(detailsSection) {
+        (detailsSection as HTMLElement).style.display = 'grid';
+    }
 }
