@@ -1,5 +1,3 @@
-import "./api/weatherApi";
-import "./api/forecastApi";
-import "./api/airQualityApi";
-
-// Entry point file
+import "./api/weatherApi.js";
+import "./api/forecastApi.js";
+import "./api/airQualityApi.js";
