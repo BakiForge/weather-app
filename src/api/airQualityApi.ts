@@ -49,4 +49,7 @@ export async function getAirQuality (city: string) {
         aqiStatusHTML.innerText = 'Hazardous';
         progressBar.style.width = '100%';
     }
+
+    const airQualitySection = document.querySelector('.air-quality') as HTMLElement;
+    airQualitySection.style.display = 'block';
 }

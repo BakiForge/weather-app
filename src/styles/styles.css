@@ -256,6 +256,9 @@ nav a:hover{
 /* ===========================
    AIR QUALITY
 =========================== */
+.air-quality {
+    display: none;
+}
 
 .air-quality h2{
     margin-bottom:25px;
