@@ -1,1 +1,5 @@
-// This is a entry point file
+import "./api/weatherApi";
+import "./api/forecastApi";
+import "./api/airQualityApi";
+
+// Entry point file
