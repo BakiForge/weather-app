@@ -54,4 +54,9 @@ export async function getForecast (city: string) {
     if(day5 && day5HTML) {
         day5HTML.innerHTML = `${Math.round(day5.main.temp_max)}°C / ${Math.round(day5.main.temp_min)}°C`;
     }
+
+    const forecastSection = document.querySelector('.forecast') as HTMLElement;
+    if(forecastSection) {
+        forecastSection.style.display = 'block';
+    }
 }
