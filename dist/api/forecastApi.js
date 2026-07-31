@@ -1,7 +1,14 @@
 const apiKey = "c2892393883b3c8aeeb340b71415dbe9";
-const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=belgrade&appid=c2892393883b3c8aeeb340b71415dbe9&units=metric";
-export async function getForecast() {
-    const response = await fetch(apiUrl);
+const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?&units=metric&q=";
+const searchBox = document.getElementById('search-box');
+const searchButton = document.querySelector('.search-button');
+if (searchBox && searchButton) {
+    searchButton.addEventListener('click', () => {
+        getForecast(searchBox.value);
+    });
+}
+export async function getForecast(city) {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
     const data = await response.json();
     const forecastList = data.list;
     const dailyForecast = [];
