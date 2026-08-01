@@ -1,3 +1,4 @@
+import { displayCurrentDate } from "../utils/displayCurrentDate.js";
 const apiKey = "c2892393883b3c8aeeb340b71415dbe9";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
 const searchBox = document.getElementById('search-box');
@@ -87,5 +88,6 @@ export async function getWeather(city) {
     if (detailsSection) {
         detailsSection.style.display = 'grid';
     }
+    displayCurrentDate();
 }
 //# sourceMappingURL=weatherApi.js.map
