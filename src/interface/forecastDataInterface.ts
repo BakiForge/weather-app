@@ -5,3 +5,9 @@ export interface forecastData {
         temp_min: number;
     }
 }
+
+export interface DailyForecast {
+    date: string;
+    minTemp: number;
+    maxTemp: number;
+}
