@@ -12,10 +12,26 @@ export async function getForecast(city) {
     const data = await response.json();
     const forecastList = data.list;
     const dailyForecast = [];
+    const days = [];
     forecastList.forEach((forecast) => {
-        if (forecast.dt_txt.includes('12:00:00')) {
-            dailyForecast.push(forecast);
+        const day = forecast.dt_txt.split(" ")[0];
+        if (!days.includes(String(day))) {
+            days.push(String(day));
         }
+    });
+    days.forEach((day) => {
+        let minTemp = +Infinity;
+        let maxTemp = -Infinity;
+        forecastList.forEach((forecast) => {
+            if (forecast.dt_txt.includes(day)) {
+                if (forecast.main.temp_min < minTemp) {
+                    minTemp = forecast.main.temp_min;
+                }
+                if (forecast.main.temp_max > maxTemp) {
+                    maxTemp = forecast.main.temp_max;
+                }
+            }
+        });
     });
     const day1 = dailyForecast[0];
     const day1HTML = document.querySelector('.day1');
