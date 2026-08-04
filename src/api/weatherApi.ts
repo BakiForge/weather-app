@@ -1,21 +1,14 @@
 import type {weatherData} from "../interface/weatherDataInterface.ts";
-import  { displayCurrentDate } from "../utils/displayCurrentDate.js";
+import { displayCurrentDate } from "../utils/display/displayCurrentDate.js";
+import { displayWeatherIcons} from "../utils/display/displayWeatherIcons.js";
+import { displaySectionsHTML } from "../utils/display/displaySectionsHTML.js";
+import { displayWeatherInfo } from "../utils/display/displayWeatherInfo.js";
+import { toggleSearch } from "../utils/toggleSearch.js";
 
 const apiKey: string = "c2892393883b3c8aeeb340b71415dbe9";
 const apiUrl: string = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
 
-const searchBox = document.getElementById('search-box') as HTMLInputElement;
-const searchButton = document.querySelector('.search-button');
-
-if(searchButton) {
-    searchButton.addEventListener('click', ()=>{
-        if(searchBox) {
-            getWeather(searchBox.value);
-        }
-    });
-}
-
-
+toggleSearch();
 
 export async function getWeather (city: string) {
     const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
@@ -32,74 +25,11 @@ export async function getWeather (city: string) {
             visibility: data.visibility
         };
 
-        const cityName= document.querySelector('.city-name');
-        if(cityName) {
-            cityName.innerHTML = weatherData.name;
-        }
-
-        const description = document.querySelector('.description');
-        if(description) {
-            description.innerHTML = weatherData.description.toUpperCase();
-        }
-
-        const temperature = document.querySelector('.temperature');
-        if(temperature) {
-            temperature.innerHTML =  `${Math.round(weatherData.temp)}°C`;
-        }
-
-        const feelsLike = document.querySelector('.feels-like');
-        if(feelsLike) {
-            feelsLike.innerHTML =  `${Math.round(weatherData.feels_like)}°C`;
-        }
-
-        const humidity = document.querySelector('.humidity');
-        if(humidity) {
-            humidity.innerHTML =  `${weatherData.humidity}%`;
-        }
-
-        const wind = document.querySelector('.wind');
-        if(wind) {
-            wind.innerHTML =  `${weatherData.windSpeed} km/h`
-        }
-
-        const pressure = document.querySelector('.pressure');
-        if(pressure) {
-            pressure.innerHTML =  `${weatherData.pressure} hPa`;
-        }
-
-        const visibility = document.querySelector('.visibility');
-        if(visibility) {
-            visibility.innerHTML =  `${(weatherData.visibility)/1000} km`;
-        }
-
-        const weatherIcon = document.querySelector('.weather-icon') as HTMLImageElement;
-        if(weatherIcon) {
-            if(weatherData.description === 'Clear') {
-                weatherIcon.src = 'src/assets/sunny.png';
-            } else if(weatherData.description === 'Clouds') {
-                weatherIcon.src = 'src/assets/clouds.png';
-            } else if(weatherData.description === 'Rain') {
-                weatherIcon.src = 'src/assets/rain.png';
-            } else if(weatherData.description === 'Drizzle') {
-                weatherIcon.src = 'src/assets/drizzle.png';
-            } else if(weatherData.description === 'Mist') {
-                weatherIcon.src = 'src/assets/mist.png';
-            } else if(weatherData.description === 'Wind') {
-                weatherIcon.src = 'src/assets/wind.png';
-            } else if(weatherData.description === 'Snow') {
-                weatherIcon.src = 'src/assets/snow.png';
-            } else if(weatherData.description === 'Humidity') {
-                weatherIcon.src = 'src/assets/humidity.png';
-            }
-        }
-
-    const weatherMainSection = document.querySelector('.current-weather') as HTMLDivElement;
-    weatherMainSection.style.display = 'block';
-
-    const detailsSection = document.querySelector('.details-grid');
-    if(detailsSection) {
-        (detailsSection as HTMLElement).style.display = 'grid';
-    }
-
+    displayWeatherInfo({
+        name: weatherData.name, description: weatherData.description, temp: weatherData.temp, feels_like: weatherData.feels_like,
+        humidity: weatherData.humidity, windSpeed: weatherData.windSpeed, pressure: weatherData.pressure, visibility: weatherData.visibility
+    });
+    displayWeatherIcons({description: weatherData.description});
+    displaySectionsHTML();
     displayCurrentDate();
 }
