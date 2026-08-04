@@ -1,5 +1,5 @@
 import type {weatherData} from "../interface/weatherDataInterface.ts";
-import { displayCurrentDate } from "../utils/displayCurrentDate.js";
+import  { displayCurrentDate } from "../utils/displayCurrentDate.js";
 
 const apiKey: string = "c2892393883b3c8aeeb340b71415dbe9";
 const apiUrl: string = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
