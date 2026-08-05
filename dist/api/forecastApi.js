@@ -3,6 +3,7 @@ import { displayForecast } from "../utils/display/displayForecast.js";
 const apiKey = "c2892393883b3c8aeeb340b71415dbe9";
 const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?&units=metric&q=";
 toggleSearchForecast();
+getForecastData();
 export async function getForecast(city) {
     const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
     const data = await response.json();
@@ -35,5 +36,14 @@ export async function getForecast(city) {
         });
     });
     displayForecast(dailyForecast);
+    localStorage.setItem('forecastData', JSON.stringify(dailyForecast));
+}
+function getForecastData() {
+    const savedData = localStorage.getItem('forecastData');
+    if (!savedData) {
+        return null;
+    }
+    const dataObject = JSON.parse(savedData);
+    displayForecast(dataObject);
 }
 //# sourceMappingURL=forecastApi.js.map

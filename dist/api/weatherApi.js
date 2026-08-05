@@ -6,6 +6,7 @@ import { toggleSearch } from "../utils/toggleSearch.js";
 const apiKey = "c2892393883b3c8aeeb340b71415dbe9";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
 toggleSearch();
+getWeatherData();
 export async function getWeather(city) {
     const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
     let data = await response.json();
@@ -19,6 +20,18 @@ export async function getWeather(city) {
         windSpeed: data.wind.speed,
         visibility: data.visibility
     };
+    displayCurrentWeather(weatherData);
+    localStorage.setItem('weatherData', JSON.stringify(weatherData));
+}
+function getWeatherData() {
+    const savedData = localStorage.getItem('weatherData');
+    if (!savedData) {
+        return null;
+    }
+    const dataObject = JSON.parse(savedData);
+    displayCurrentWeather(dataObject);
+}
+function displayCurrentWeather(weatherData) {
     displayWeatherInfo({
         name: weatherData.name, description: weatherData.description, temp: weatherData.temp, feels_like: weatherData.feels_like,
         humidity: weatherData.humidity, windSpeed: weatherData.windSpeed, pressure: weatherData.pressure, visibility: weatherData.visibility
