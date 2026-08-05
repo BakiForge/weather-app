@@ -5,45 +5,55 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?&units=metric&q
 toggleSearchForecast();
 getForecastData();
 export async function getForecast(city) {
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-    const data = await response.json();
-    const forecastList = data.list;
-    const dailyForecast = [];
-    const days = [];
-    forecastList.forEach((forecast) => {
-        const day = forecast.dt_txt.split(" ")[0];
-        if (!days.includes(String(day))) {
-            days.push(String(day));
-        }
-    });
-    days.forEach((day) => {
-        let minTemp = +Infinity;
-        let maxTemp = -Infinity;
+    try {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        const data = await response.json();
+        const forecastList = data.list;
+        const dailyForecast = [];
+        const days = [];
         forecastList.forEach((forecast) => {
-            if (forecast.dt_txt.includes(day)) {
-                if (forecast.main.temp_min < minTemp) {
-                    minTemp = forecast.main.temp_min;
-                }
-                if (forecast.main.temp_max > maxTemp) {
-                    maxTemp = forecast.main.temp_max;
-                }
+            const day = forecast.dt_txt.split(" ")[0];
+            if (!days.includes(String(day))) {
+                days.push(String(day));
             }
         });
-        dailyForecast.push({
-            date: day,
-            minTemp: minTemp,
-            maxTemp: maxTemp
+        days.forEach((day) => {
+            let minTemp = +Infinity;
+            let maxTemp = -Infinity;
+            forecastList.forEach((forecast) => {
+                if (forecast.dt_txt.includes(day)) {
+                    if (forecast.main.temp_min < minTemp) {
+                        minTemp = forecast.main.temp_min;
+                    }
+                    if (forecast.main.temp_max > maxTemp) {
+                        maxTemp = forecast.main.temp_max;
+                    }
+                }
+            });
+            dailyForecast.push({
+                date: day,
+                minTemp: minTemp,
+                maxTemp: maxTemp
+            });
         });
-    });
-    displayForecast(dailyForecast);
-    localStorage.setItem('forecastData', JSON.stringify(dailyForecast));
+        displayForecast(dailyForecast);
+        localStorage.setItem('forecastData', JSON.stringify(dailyForecast));
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function getForecastData() {
     const savedData = localStorage.getItem('forecastData');
     if (!savedData) {
         return null;
     }
-    const dataObject = JSON.parse(savedData);
-    displayForecast(dataObject);
+    try {
+        const dataObject = JSON.parse(savedData);
+        displayForecast(dataObject);
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //# sourceMappingURL=forecastApi.js.map

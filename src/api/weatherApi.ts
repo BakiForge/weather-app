@@ -12,7 +12,8 @@ toggleSearch();
 getWeatherData();
 
 export async function getWeather (city: string) {
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    try {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
         let data = await response.json();
 
         let weatherData: weatherData = {
@@ -26,9 +27,12 @@ export async function getWeather (city: string) {
             visibility: data.visibility
         };
 
-    displayCurrentWeather(weatherData);
+        displayCurrentWeather(weatherData);
 
-    localStorage.setItem('weatherData', JSON.stringify(weatherData));
+        localStorage.setItem('weatherData', JSON.stringify(weatherData));
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function getWeatherData () {
@@ -36,8 +40,12 @@ function getWeatherData () {
     if(!savedData) {
         return null;
     }
-    const dataObject = JSON.parse(savedData);
-    displayCurrentWeather(dataObject);
+    try {
+        const dataObject = JSON.parse(savedData);
+        displayCurrentWeather(dataObject);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function displayCurrentWeather (weatherData: weatherData) {

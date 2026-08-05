@@ -5,18 +5,28 @@ const apiUrl = "https://api.waqi.info/feed/";
 toggleSearchForAirQuality();
 getAqiData();
 export async function getAirQuality(city) {
-    const response = await fetch(apiUrl + city + `/?token=${apiKey}`);
-    const data = await response.json();
-    const airQuality = data.data.aqi;
-    displayAirQuality(Number(airQuality));
-    localStorage.setItem('aqiData', JSON.stringify(airQuality));
+    try {
+        const response = await fetch(apiUrl + city + `/?token=${apiKey}`);
+        const data = await response.json();
+        const airQuality = data.data.aqi;
+        displayAirQuality(Number(airQuality));
+        localStorage.setItem('aqiData', JSON.stringify(airQuality));
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function getAqiData() {
     const savedData = localStorage.getItem('aqiData');
     if (!savedData) {
         return null;
     }
-    const dataObject = JSON.parse(savedData);
-    displayAirQuality(Number(dataObject));
+    try {
+        const dataObject = JSON.parse(savedData);
+        displayAirQuality(Number(dataObject));
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 //# sourceMappingURL=airQualityApi.js.map

@@ -8,28 +8,38 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=
 toggleSearch();
 getWeatherData();
 export async function getWeather(city) {
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-    let data = await response.json();
-    let weatherData = {
-        name: data.name,
-        description: data.weather[0].main,
-        temp: data.main.temp,
-        feels_like: data.main.feels_like,
-        humidity: data.main.humidity,
-        pressure: data.main.pressure,
-        windSpeed: data.wind.speed,
-        visibility: data.visibility
-    };
-    displayCurrentWeather(weatherData);
-    localStorage.setItem('weatherData', JSON.stringify(weatherData));
+    try {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        let data = await response.json();
+        let weatherData = {
+            name: data.name,
+            description: data.weather[0].main,
+            temp: data.main.temp,
+            feels_like: data.main.feels_like,
+            humidity: data.main.humidity,
+            pressure: data.main.pressure,
+            windSpeed: data.wind.speed,
+            visibility: data.visibility
+        };
+        displayCurrentWeather(weatherData);
+        localStorage.setItem('weatherData', JSON.stringify(weatherData));
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function getWeatherData() {
     const savedData = localStorage.getItem('weatherData');
     if (!savedData) {
         return null;
     }
-    const dataObject = JSON.parse(savedData);
-    displayCurrentWeather(dataObject);
+    try {
+        const dataObject = JSON.parse(savedData);
+        displayCurrentWeather(dataObject);
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 function displayCurrentWeather(weatherData) {
     displayWeatherInfo({

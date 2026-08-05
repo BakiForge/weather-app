@@ -9,43 +9,47 @@ toggleSearchForecast();
 getForecastData();
 
 export async function getForecast (city: string) {
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-    const data = await response.json();
+    try {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        const data = await response.json();
 
-    const forecastList: forecastData[]  = data.list;
-    const dailyForecast:  DailyForecast[] = [];
+        const forecastList: forecastData[]  = data.list;
+        const dailyForecast:  DailyForecast[] = [];
 
-    const days: string[] = [];
-    forecastList.forEach((forecast)=>{
-        const day = forecast.dt_txt.split(" ")[0];
-        if(!days.includes(String(day))) {
-            days.push(String(day));
-        }
-    });
-
-    days.forEach((day)=> {
-        let minTemp = +Infinity;
-        let maxTemp = -Infinity;
-        forecastList.forEach((forecast) => {
-            if(forecast.dt_txt.includes(day)) {
-                if(forecast.main.temp_min < minTemp) {
-                    minTemp = forecast.main.temp_min;
-                }
-                if(forecast.main.temp_max > maxTemp) {
-                    maxTemp = forecast.main.temp_max;
-                }
+        const days: string[] = [];
+        forecastList.forEach((forecast)=>{
+            const day = forecast.dt_txt.split(" ")[0];
+            if(!days.includes(String(day))) {
+                days.push(String(day));
             }
         });
-        dailyForecast.push({
-            date: day,
-            minTemp: minTemp,
-            maxTemp: maxTemp
+
+        days.forEach((day)=> {
+            let minTemp = +Infinity;
+            let maxTemp = -Infinity;
+            forecastList.forEach((forecast) => {
+                if(forecast.dt_txt.includes(day)) {
+                    if(forecast.main.temp_min < minTemp) {
+                        minTemp = forecast.main.temp_min;
+                    }
+                    if(forecast.main.temp_max > maxTemp) {
+                        maxTemp = forecast.main.temp_max;
+                    }
+                }
+            });
+            dailyForecast.push({
+                date: day,
+                minTemp: minTemp,
+                maxTemp: maxTemp
+            });
         });
-    });
 
-    displayForecast(dailyForecast);
+        displayForecast(dailyForecast);
 
-    localStorage.setItem('forecastData', JSON.stringify(dailyForecast));
+        localStorage.setItem('forecastData', JSON.stringify(dailyForecast));
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function getForecastData () {
@@ -53,6 +57,10 @@ function getForecastData () {
     if(!savedData) {
         return null;
     }
-    const dataObject = JSON.parse(savedData);
-    displayForecast(dataObject);
+    try {
+        const dataObject = JSON.parse(savedData);
+        displayForecast(dataObject);
+    } catch (error) {
+        console.error(error);
+    }
 }
