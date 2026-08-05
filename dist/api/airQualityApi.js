@@ -17,6 +17,6 @@ function getAqiData() {
         return null;
     }
     const dataObject = JSON.parse(savedData);
-    displayAirQuality(Number(savedData));
+    displayAirQuality(Number(dataObject));
 }
 //# sourceMappingURL=airQualityApi.js.map

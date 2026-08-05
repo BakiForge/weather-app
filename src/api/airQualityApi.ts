@@ -25,5 +25,5 @@ function getAqiData () {
         return null;
     }
     const dataObject = JSON.parse(savedData);
-    displayAirQuality(Number(savedData));
+    displayAirQuality(Number(dataObject));
 }
