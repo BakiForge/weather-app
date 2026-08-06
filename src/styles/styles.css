@@ -60,16 +60,8 @@ header{
     margin-bottom:60px;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-size:28px;
-    font-weight:700;
-}
-
-.logo i{
-    color:#FFD54F;
+.weather-logo {
+    width: 100px;
 }
 
 nav{
@@ -151,6 +143,7 @@ nav a:hover{
 .current-weather {
     margin-top: 45px;
     display: none;
+    cursor: pointer;
 }
 
 .weather-main{
@@ -197,6 +190,7 @@ nav a:hover{
 
 .detail-card{
     text-align:center;
+    cursor: pointer;
 }
 
 .detail-card i{
@@ -237,6 +231,7 @@ nav a:hover{
 
 .forecast-card{
     text-align:center;
+    cursor: pointer;
 }
 
 .forecast-card h3{
@@ -258,6 +253,7 @@ nav a:hover{
 =========================== */
 .air-quality {
     display: none;
+    cursor: pointer;
 }
 
 .air-quality h2{
